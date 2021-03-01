@@ -4,6 +4,7 @@ numbers = [3, 6, 7, 60, 8, 4, 5, 100, 1, 2, 99, 98, 97, 306]
 
 
 def selection_sort(array):
+    """Sorts an array/list using the 'selection sort' algorithm"""
 
     # iterate over entire array
     for i in range(len(array)):
@@ -34,7 +35,7 @@ selection_sort(numbers)
 
 # Selection Sort in Python (pseudocode)
 
-# 1. Function 'selection_sort()' accepts one parameter, 'array', which will be our function to sort.
+# 1. Function 'selection_sort()' accepts one parameter, 'array', which will be our array to sort.
 
 # 2. We first iterate over the array with 'for i in range(len(array))', where i is the current position we're solving for
 
@@ -58,6 +59,8 @@ selection_sort(numbers)
 
 # (Think of Selection Sort as an algorithm where we 'solve' each position in the array one at a time, by iterating over
 #  the rest of the elements in the array, and swapping the starting position with the minimum value found.)
+
+# Time complexity:
 
 # Big-O: O(n^2)
 # Omega: O(n^2)
