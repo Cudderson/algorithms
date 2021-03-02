@@ -47,6 +47,8 @@ print(f"Position of {num_to_find} in array:\n{x}")
 
 # Binary search is a searching algorithm that looks for an element in an array and returns its position.
 
+# This is an iterative implementation of binary search, but note that this algorithm can also be executed recursively.
+
 # 1. To implement binary search, our array/list must be sorted. ( array = sorted(array) )
 #    - Assume array is sorted in ascending order for this implementation.
 
