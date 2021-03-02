@@ -22,16 +22,17 @@ def binary_search(array, x):
         if array[mid] > x:
 
             # x is on left side
-            # we know mid != the answer, so subtract 1 to stop evaluating it
+
             high = mid - 1
 
         elif array[mid] < x:
 
             # x is on the right side
-            # we know mid != the answer, so add 1
+
             low = mid + 1
 
         else:
+
             # array[mid] == x:
             return mid
 
