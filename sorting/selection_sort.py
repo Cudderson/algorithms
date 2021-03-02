@@ -1,5 +1,6 @@
-# Implement Selection Sort
+# Implement Selection Sort in Python
 
+# Array to search
 numbers = [3, 6, 7, 60, 8, 4, 5, 100, 1, 2, 99, 98, 97, 306]
 
 
