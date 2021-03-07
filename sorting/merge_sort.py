@@ -48,14 +48,11 @@ def merge_sort(array):
     return array
 
 
-#########
-
+# unsorted input array
 numbers = [9, 7, 5, 8]
-
 print(f"Unsorted Array: {numbers}")
 
 sorted_numbers = merge_sort(numbers)
-
 print(f"Merge-Sorted array: {sorted_numbers}")
 
 
