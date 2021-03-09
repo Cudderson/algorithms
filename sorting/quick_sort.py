@@ -8,13 +8,6 @@ def partition(array, start, end):
 
     while True:
 
-        # If the current value we're looking for is larger than the pivot
-        # it's in the right place (right side of pivot) and we can move left
-        # to the next element
-        # We also need to make sure we haven't surpassed the low pointer, since
-        # that indicates we have already moved all the elements to their
-        # correct side of the pivot.
-
         # check right side
         while low <= high and array[high] >= pivot:
             high -= 1
@@ -29,7 +22,7 @@ def partition(array, start, end):
             array[low], array[high] = array[high], array[low]
             # Loop will trigger again
         else:
-            # exit loop
+            # Exit Loop
             break
 
     array[start], array[high] = array[high], array[start]
@@ -51,7 +44,7 @@ def quick_sort(array, start, end):
     return array
 
 
-numbers = [3, 8, 9, 15, 7, 6, 2]
+numbers = [5, 2, 7, 1, 8, 3, 9, 6]
 print(f"Unsorted Array: {numbers}")
 
 sorted_array = quick_sort(numbers, 0, len(numbers) - 1)
@@ -61,17 +54,13 @@ print(f"Sorted Array: {sorted_array}")
 # Quick Sort in Python (recursive, in-place)
 
 # Quick Sort is a 'divide and conquer' algorithm that selects a 'pivot' from a given array and partitions the elements
-# into 2 sub-arrays, according to whether they are greater or less than hte pivot.
+# into 2 sub-arrays, according to whether they are greater or less than the pivot.
 # The sub-arrays are then sorted recursively.
-
-# Assume array = [3, 8, 9, 15, 7, 6, 2] for this example
-
-# describe functions---The quick_sort() function will first partition() the collection and then recursively call itself on the divided parts.
 
 # *** The Quick Sort algorithm takes in as parameters:
 #       1. an unsorted array
-#       2. 'start' -- describe
-#       3. 'end' -- describe
+#       2. 'start' -- beginning of array
+#       3. 'end' -- end of array
 
 # *** We also have another function, 'partition()'.
 #    - 'The quick_sort()' function will first 'partition()' the array and then recursively call itself
@@ -91,7 +80,7 @@ print(f"Sorted Array: {sorted_array}")
 # 4. Now in the while loop, we enter an inner-while loop that checks that both conditions are true:
 #       - low <= high
 #       - array[high] >= pivot
-#           - Obviously we don't want our 'low' pointer to pass our 'high' pointer.
+#           - Obviously we don't want our 'low' pointer to pass our 'high' pointer, or vice versa.
 #           - We check if value at array[high] is greater than the pivot value, where we want it to be.
 #    If both are true, we decrease 'high' by -1.
 #       - Because value at array[high] is in correct place, we don't need to worry about it anymore (high -= 1)
@@ -124,4 +113,40 @@ print(f"Sorted Array: {sorted_array}")
 #       - At this point, all values to the left of our original pivot (now at 'array[high]') are less than it, and values
 #         to the right are greater, completing the first recursive step.
 
-### Need to finish ###
+# 9. When partition is finished, it returns p = 'high', which was swapped with our pivot. 'quick_sort()' is called again,
+#    this time with the range of 0 -> p - 1. 'partition()' will be called again therefore, and will do the same process with
+#    a sub-array with everything to the left of our original pivot.
+
+# 10. These recursive calls will continue to trigger until 'start >= end', in which case we 'return'
+
+# 11. At this point, the bottom quick_sort() recursive call will trigger, sorting the initial range of 'p + 1 -> end', where
+#     'p' is our original pivot.
+
+# 12. The exact same steps will take place, sorting the size-decreasing sub-arrays on the right side of the original pivot.
+
+# 13. When the 'start >= end' base case triggers this time, we have our sorted array.
+
+### Simplified:
+
+# Divide
+# The array is divided into sub-parts taking pivot as the partitioning point. The elements smaller than the pivot are
+# placed to the left of the pivot and the elements greater than the pivot are placed to the right.
+
+# Conquer
+# The left and the right sub-parts are again partitioned using the by selecting pivot elements for them. This can
+# be achieved by recursively passing the sub-parts into the algorithm.
+
+# Combine
+# This step does not play a significant role in quick sort. The array is already sorted at the end of the conquer step.
+
+# source: https://www.programiz.com/dsa/quick-sort
+
+
+# Time Complexity:
+
+# Big-O:
+#  - worst case: O(n^2) (pivot chosen is smallest or largest element)
+#  - best case:  O(n*log n) (pivot is the middle element or near)
+#  - average case: O(n*log n)
+
+# Space Complexity: O(log n)
