@@ -36,7 +36,7 @@ def heap_sort(array):
         heapify(array, i, 0)
 
 
-numbers = [7, 8, 3, 0, 9, 6, 5]
+numbers = [10, 9, 11, 3, 4, 5]
 print(f"Unsorted Array: {numbers}")
 
 heap_sort(numbers)
@@ -46,4 +46,15 @@ print(numbers)
 
 # Heap Sort in Python
 
-####explanation####
+# Heap Sort is a comparison-based sorting algorithm that's based on the binary heap data structure.
+# Implementing heap sort requires a binary heap, where elements are stored such that a parent node is greater than
+# the values in its two children nodes. (Max Heap) The heap can be represented as a binary tree or an array.
+
+# Pseudocode:
+# 1. Build a Max Heap from the input array
+# 2. After the array is converted to a max heap, the largest item is stored at the top of the heap.
+#       - Replace it with the last item of the heap, followed by reducing the size of the heap by 1.
+#       - Heapify the root of the tree.
+# 3. Repeat step 2 while size of the heap is greater than 1.
+# *** The heapify step can only be applied to a node if its children nodes are heapified. Therefore, heapification
+# *** must be performed in the bottom-up order.
