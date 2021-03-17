@@ -5,12 +5,16 @@ def heapify(array, n, i):
 
     # Find largest root among root children
     largest = i
+
+    # In a complete binary tree, the left and right children of a node 'i' can be expressed by:
     left = 2 * i + 1
     right = 2 * i + 2
 
+    # check if left child is larger than root parent
     if left < n and array[i] < array[left]:
         largest = left
 
+    # check if right child is less than root parent
     if right < n and array[largest] < array[right]:
         largest = right
 
@@ -24,7 +28,8 @@ def heap_sort(array):
 
     n = len(array)
 
-    # Build max heap
+    # Build max heap (n//2 because we need to multiply i by 2 to evaluate the node's children
+    # We start at i = n//2 because we need to build the max heap from the bottom-up (children first)
     for i in range(n//2, -1, -1):
         heapify(array, n, i)
 
@@ -59,79 +64,25 @@ print(numbers)
 # *** The heapify step can only be applied to a node if its children nodes are heapified. Therefore, heapification
 # *** must be performed in the bottom-up order.
 
-# Walkthrough for understanding (breakpoint)
+# ( i think 1 heapify call observes only a node and its children, trying to find the largest, and moving the child up
+#   if it is larger than the node )
 
-# Step 1: Build max heap from input array
+# Took me the entire cycle to get it.
 
-# heap_sort() is called with input array 'numbers'
-#  n = 6 (array length)
-#  i = 3 (n//2)
+### Now, try to summarize better.
 
-# The max heap is built through the for loop (for i in range(n//2, -1, -1))
-# which says (for i in range(3 up to -1, stepping by -1)
+# Building the max heap
 
-# Note: In a complete tree, the first index of a non-leaf node is given by 'n/2 - 1'. All other nodes after
-#       that are leaf nodes; they don't need to be heapified.
+# The first for loop in 'heap_sort()' will complete with the array converted to a max heap. It is built from bottom-up
+# It begins by heapifying the 'youngest' nodes that could have children (n//2)
 
-# In the loops first iteration, heapify() is called with parameters (array, n=6, i=3)
+# In heapify, the parent node is compared against its 2 children, determining the largest. (left < n, right < n to prevent index error)
 
-# Within heapify, some variables are initialized (largest = i, left = 2 * i + 1, right = 2 * i + 2)
-#   - largest = 3
-#   - left = 7
-#   - right = 8
+# If the parent is not the largest, (largest != i), then the parent and child are swapped.
+# If a swap happens, heapify is called again with the new parent, to confirm that it is indeed the largest child
 
-# An 'if' condition is checked for if left < n, and array[i] < array[left]
-# left is not less than n, so condition doesn't trigger.
+# After an iteration with no swaps, i is decremented by 1, to represent a new parent node to heapify
+# Because we're examining every parent node in the for loop, and swapping larger nodes with its lesser root, this loop cycle
+# will finish with a max heap, where every parent node is greater than its children.
 
-# Another condition checks if right < n, and array[largest] < array[right]
-# right is not less than n, so condition doesn't trigger
-
-# A third condition checks if 'largest != i', which again doesn't trigger
-
-# So, nothing happened the first time calling 'heapify()'
-# We return to the first for loop in heap_sort() and the loop continues.
-#   - heapify() is called again, with i = 2 this time (because i is decremented by 1)
-
-# This time, in heapify(), variables are re-initialized to:
-#   largest = 2
-#   left = 5
-#   right = 6
-
-# The first condition checks if left < n and array[i] < array[left] >>english>> if 5 < 6 and 11 < 5
-#   condition doesn't trigger
-
-# Second condition checks if right < n and array[largest] < array[right] >>english>> if 6 < 6 and 11 < [doesnt exist]
-#   condition doesn't trigger
-
-# Third condition checks if largest != i
-#   condition doesn't trigger
-
-# We return to the for loop in heap_sort, where i is decremented again, now i = 1, and heapify() is called again
-# Varibales re-initialized now to:
-#   largest = 1
-#   left = 3
-#   right = 4
-
-# First condition checks if left < n and array[i] < array[left] >>english>> if 3 < 3 and 9 < 3
-#   doesn't trigger
-
-# Second condition checks if right < n and array[largest] < array[right] >>english>> if 4 < 6 and 9 < 4
-#   doesn't trigger
-
-# Third condition checks if largest != i
-#   doesn't trigger
-
-# Back in the for loop, i is decremented to 0 (final for loop iteration), and heapify() is called.
-# Variables reinitialized:
-# largest = 0
-# left = 1
-# right = 2
-
-# first condition doesn't trigger
-
-# second condition checks if right < n and array[largest] < array[right] >>english>> if 2 < 6 and 10 < 11
-# Finally it's true and the condition triggers:
-#   - largest is set to right >>english>> largest = 2
-#   - We have found the largest element in the array
-
-###finish###
+###need to finish###
