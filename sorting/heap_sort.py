@@ -51,9 +51,10 @@ print(numbers)
 
 # Heap Sort in Python
 
-# Heap Sort is a comparison-based sorting algorithm that's based on the binary heap data structure.
-# Implementing heap sort requires a binary heap, where elements are stored such that a parent node is greater than
-# the values in its two children nodes. (Max Heap) The heap can be represented as a binary tree or an array.
+# Heap Sort is an in-place, comparison-based sorting algorithm that's based on the binary heap data structure.
+# Implementing heap sort requires a binary heap, which is a binary tree where elements are stored such that a parent
+# node is greater than the values in its two children nodes. (Max Heap) The heap can be represented as a binary
+# tree or an array.
 
 # Pseudocode:
 # 1. Build a Max Heap from the input array
@@ -64,14 +65,9 @@ print(numbers)
 # *** The heapify step can only be applied to a node if its children nodes are heapified. Therefore, heapification
 # *** must be performed in the bottom-up order.
 
-# ( i think 1 heapify call observes only a node and its children, trying to find the largest, and moving the child up
-#   if it is larger than the node )
+# Explanation
 
-# Took me the entire cycle to get it.
-
-### Now, try to summarize better.
-
-# Building the max heap
+# Step 1: Building the max heap
 
 # The first for loop in 'heap_sort()' will complete with the array converted to a max heap. It is built from bottom-up
 # It begins by heapifying the 'youngest' nodes that could have children (n//2)
@@ -79,10 +75,39 @@ print(numbers)
 # In heapify, the parent node is compared against its 2 children, determining the largest. (left < n, right < n to prevent index error)
 
 # If the parent is not the largest, (largest != i), then the parent and child are swapped.
-# If a swap happens, heapify is called again with the new parent, to confirm that it is indeed the largest child
+# If a swap happens, heapify is called again with the new parent, to confirm that it is indeed the largest child.
 
-# After an iteration with no swaps, i is decremented by 1, to represent a new parent node to heapify
-# Because we're examining every parent node in the for loop, and swapping larger nodes with its lesser root, this loop cycle
-# will finish with a max heap, where every parent node is greater than its children.
+# After an iteration with no swaps, i is decremented by 1, to represent a new parent node to heapify.
+# Because we're examining every parent node in the for loop, and swapping larger nodes with its lesser root, this loop
+# cycle will finish with a max heap, where every parent node is greater than its children.
 
-###need to finish###
+# Step 2: Swap the root with last item in the heap, decrease heap size by 1, and heapify the root.
+
+# With our max heap, the algorithm moves into heap_sort()'s second for loop, where the array will be properly sorted.
+
+# The loop begins with 'for i in range(n-1, 0, -1)'
+# Because we start at index 0, n-1 represents the index for the last element in array.
+
+# array[0] and array[i] are swapped, placing the largest element at the end of the array (sorted position)
+
+# Next, heapify(array, i, 0) is called, to heapify the new root node (find largest element between root and children, place at root)
+
+# Once the largest is found, and we return to the for loop, 'i' decrements by 1, and array[0] and array[i] swap, placing
+# the largest element in its final sorted position.
+
+# Because we started with a max heap, the next element to place in sorted position will always be available by
+# heapifying the root node.
+
+# The process of heapifying the root node, then swapping it with array[i] will continue until 'i' is decremented to 1.
+# ( for i in range(n-1, 0, -1 )
+
+# Once the for loop completes, our array is sorted.
+
+# Time Complexity:
+# Building the max heap takes O(n) time, but heap_sort takes O(log n) for n iterations.
+# Together, heap sort takes O(n*log n)
+
+# Big O: O(n*log n)
+
+# Space Complexity:
+# O(1), no extra space is required to sort.
