@@ -52,15 +52,12 @@ def radix_sort(array):
         place *= 10
 
 
-start = time.time()
 numbers = [88, 17, 64, 2, 12, 0, 141, 29, 18, 77]
 
 print(f"Unsorted Array: {numbers}")
 radix_sort(numbers)
 print(f"Sorted array: {numbers}")
-end = time.time()
 
-print(f"Execution time: {end - start}")
 
 # Radix Sort in Python
 
